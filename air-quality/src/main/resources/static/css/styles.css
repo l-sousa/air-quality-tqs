@@ -1,0 +1,34 @@
+/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+.row.content {
+    height: 550px
+}
+
+/* Set gray background color and 100% height */
+.sidenav {
+    background-color: #f1f1f1;
+    height: 100%;
+}
+
+/* On small screens, set height to 'auto' for the grid */
+@media screen and (max-width: 767px) {
+    .row.content {
+        height: auto;
+    }
+}
+
+.search_bar_container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#searchButton {
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+#searchBar {
+    margin-left: 2%;
+    margin-right: 2%;
+}
