@@ -24,6 +24,4 @@ public class ApiRestController {
         AirQuality a = service.getDataByLocation(location);
         return a;
     }
-
-    
 }

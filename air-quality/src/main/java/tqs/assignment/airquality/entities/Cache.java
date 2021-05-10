@@ -1,22 +1,41 @@
 package tqs.assignment.airquality.entities;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
+@EqualsAndHashCode
+@ToString
 public class Cache {
 
+    @Getter
+    @Setter
     private int hits = 0;
+
+    @Getter
+    @Setter
     private int misses = 0;
+
+    @Getter
+    @Setter
+    private int request_count = 0;
+
+    @ToString.Exclude
     private Map<String, AirQuality> cached_requests;
+
+    @ToString.Exclude
     private Map<String, Date> cached_requests_time;
 
     public Boolean hasLocation(String location) throws ParseException {
+        addRequest();
         if (this.cached_requests.containsKey(location) && checkTTLNotExpired(location)) {
             addHit();
             return true;
@@ -29,7 +48,7 @@ public class Cache {
         return this.cached_requests.get(location);
     }
 
-    public Boolean checkTTLNotExpired(String location) throws ParseException {
+    private Boolean checkTTLNotExpired(String location) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd hh:mm:ss");
         Date time_now = new Date();
 
@@ -71,6 +90,10 @@ public class Cache {
         this.cached_requests = new HashMap<>();
     }
 
+    public void addRequest() {
+        this.request_count++;
+    }
+
     public void addHit() {
         this.hits++;
     }
@@ -79,40 +102,5 @@ public class Cache {
         this.misses++;
     }
 
-    public int getHits() {
-        return hits;
-    }
 
-    public void setHits(int hits) {
-        this.hits = hits;
-    }
-
-    public int getMisses() {
-        return misses;
-    }
-
-    public void setMisses(int misses) {
-        this.misses = misses;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Cache cache = (Cache) o;
-        return hits == cache.hits && misses == cache.misses;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(hits, misses);
-    }
-
-    @Override
-    public String toString() {
-        return "Cache{" +
-                "hits=" + hits +
-                ", misses=" + misses +
-                '}';
-    }
 }
