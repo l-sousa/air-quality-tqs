@@ -39,12 +39,12 @@ public class AirPollutionReportServiceTest {
 
         Map<String, Pollutant> pollutants = new TreeMap<>();
 
-        Pollutant co = new Pollutant("CO", "Carbon monoxide", 106.02, "ppb");
-        Pollutant no2 = new Pollutant("NO2", "Nitrogen dioxide", 0.48, "ppb");
-        Pollutant o3 = new Pollutant("O3", "Ozone", 37.32, "ppb");
-        Pollutant pm10 = new Pollutant("PM10", "Inhalable particulate matter (<10µm)", 5.58, "ug/m3");
-        Pollutant pm2_5 = new Pollutant("PM2.5", "Fine particulate matter (<2.5µm)", 1.73, "ug/m3");
-        Pollutant so2 = new Pollutant("SO2", "Sulfur dioxide", 0.06, "ppb");
+        Pollutant co = new Pollutant("CO", "Carbon monoxide", 104.63, "ppb");
+        Pollutant no2 = new Pollutant("NO2", "Nitrogen dioxide", 0.28, "ppb");
+        Pollutant o3 = new Pollutant("O3", "Ozone", 38.19, "ppb");
+        Pollutant pm10 = new Pollutant("PM10", "Inhalable particulate matter (<10µm)", 5.78, "ug/m3");
+        Pollutant pm2_5 = new Pollutant("PM2.5", "Fine particulate matter (<2.5µm)", 2.39, "ug/m3");
+        Pollutant so2 = new Pollutant("SO2", "Sulfur dioxide", 0.08, "ppb");
 
         AirQuality hard_coded_aq = new AirQuality(location);
 
