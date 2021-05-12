@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Air Quality TQS</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row content">
+        <div class="col-sm-3 sidenav hidden-xs">
+            <h2>TQS | Air Quality</h2>
+            <ul class="nav nav-pills nav-stacked">
+                <li><a th:href="@{/current}">Current Data</a></li>
+                <li><a th:href="@{/forecast}">Forecast Data</a></li>
+                <li class="active"><a href="#">Cache Data</a></li>
+            </ul>
+            <br>
+        </div>
+        <br>
+
+        <div class="col-sm-9">
+            <div class="row" style="display: flex; flex-wrap: wrap;">
+                <div class="col-sm-12">
+                    <h1>Current Location Cache</h1>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="well">
+                        <h4>Request Count</h4>
+                        <h3 th:text="${current_cache.hits}"></h3>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="well">
+                        <h4>Misses</h4>
+                        <h3 th:text="${current_cache.misses}"></h3>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="well">
+                        <h4>Request Count</h4>
+                        <h3 th:text="${current_cache.request_count}"></h3>
+                    </div>
+                </div>
+
+
+                <div class="col-sm-12">
+                    <h1>Forecast Location Cache</h1>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="well">
+                        <h4>Request Count</h4>
+                        <h3 th:text="${forecast_cache.hits}"></h3>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="well">
+                        <h4>Misses</h4>
+                        <h3 th:text="${forecast_cache.misses}"></h3>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="well">
+                        <h4>Request Count</h4>
+                        <h3 th:text="${forecast_cache.request_count}"></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+

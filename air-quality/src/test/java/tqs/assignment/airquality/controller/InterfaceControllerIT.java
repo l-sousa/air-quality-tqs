@@ -32,5 +32,4 @@ public class InterfaceControllerIT {
                 .andExpect(view().name("index"));
     }
 
-    // fazer uma de erro? -> descobrir commo mapear o /error para um apagina html
 }

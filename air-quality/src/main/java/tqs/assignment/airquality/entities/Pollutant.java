@@ -9,23 +9,13 @@ import lombok.ToString;
 
 @EqualsAndHashCode
 @ToString
+@Getter
+@Setter
 public class Pollutant {
-    @Getter
-    @Setter
     private String display_name;
-
-    @Getter
-    @Setter
     private String full_name;
-
-    @Getter
-    @Setter
     private double value;
-
-    @Getter
-    @Setter
     private String units;
-
 
     public Pollutant(String display_name, String full_name, double value, String units) {
         this.display_name = display_name;

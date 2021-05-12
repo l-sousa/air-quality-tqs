@@ -1,31 +1,24 @@
 package tqs.assignment.airquality.entities;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.net.MalformedURLException;
-import java.time.LocalDateTime;
-import java.util.HashMap;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.Map;
-import java.util.Objects;
 import java.util.TreeMap;
 
 
 @EqualsAndHashCode
 @ToString
+@Getter
+@Setter
 public class AirQuality {
-
-    @Getter
-    @Setter
     private Location location;
-
-    @Getter
-    @Setter
     private Map<String, Pollutant> pollutants = new TreeMap<>();
-
+    private Date date = null;
 
     public AirQuality() {
     }

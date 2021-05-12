@@ -14,22 +14,15 @@ import java.util.concurrent.TimeUnit;
 
 @EqualsAndHashCode
 @ToString
-public class Cache {
-
-    @Getter
-    @Setter
+@Getter
+@Setter
+public class Cache<T> {
     private int hits = 0;
-
-    @Getter
-    @Setter
     private int misses = 0;
-
-    @Getter
-    @Setter
     private int request_count = 0;
 
     @ToString.Exclude
-    private Map<String, AirQuality> cached_requests;
+    private Map<String, T> cached_requests;
 
     @ToString.Exclude
     private Map<String, Date> cached_requests_time;
@@ -44,7 +37,7 @@ public class Cache {
         return false;
     }
 
-    public AirQuality getCachedRequest(String location) {
+    public T getCachedRequest(String location) {
         return this.cached_requests.get(location);
     }
 
@@ -58,9 +51,6 @@ public class Cache {
         TimeUnit time = TimeUnit.MINUTES;
         long diff_in_secs = time.convert(diff, TimeUnit.MINUTES) / 1000;
 
-        System.out.println("cehck TTL not expired " + diff_in_secs);
-
-
         if (diff_in_secs > 0) {
             return true;
         }
@@ -70,8 +60,8 @@ public class Cache {
         return false;
     }
 
-    public void addRequestToCache(String location, AirQuality air_quality) {
-        this.cached_requests.put(location, air_quality);
+    public void addRequestToCache(String location, T air_quality) {
+        this.cached_requests.put(location, (T) air_quality);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd hh:mm:ss");
 
         Date time_now = new Date();

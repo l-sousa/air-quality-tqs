@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Air Quality TQS</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row content">
+        <div class="col-sm-3 sidenav hidden-xs">
+            <h2>TQS | Air Quality</h2>
+            <ul class="nav nav-pills nav-stacked">
+                <li class="active"><a href="#">Current Data</a></li>
+                <li><a th:href="@{/forecast}">Forecast Data</a></li>
+                <li><a th:href="@{/cache}">Cache Data</a></li>
+            </ul>
+            <br>
+        </div>
+        <br>
+
+        <div class="col-sm-9">
+            <div class="well input-group search_bar_container">
+                <form th:action="@{/current}" method="get" style="width: 100%; display: flex; flex-wrap: nowrap;">
+                    <input th:name="location" id="searchBar" type="search" class="form-control rounded"
+                           placeholder="Search"
+                           aria-label="Search"
+                           aria-describedby="search-addon"/>
+                    <button id="searchButton" type="submit" class="btn btn-primary">search</button>
+                </form>
+            </div>
+            <div th:switch="${is_index}">
+                <div th:case="${false}">
+                    <h1 th:text="'Results for: ' + ${location.address} + ' ' + ${location.coordinates}"></h1>
+                    <div class="row" style="display: flex; flex-wrap: wrap;">
+                        <div class="col-sm-3" th:each="instance : ${pollutants}">
+                            <div class="well">
+                                <h4 th:text="${instance.value.display_name}"></h4>
+                                <p th:text="${instance.value.full_name}"></p>
+                                <p th:text="${instance.value.value} + ' ' + ${instance.value.units}"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div th:case="${true}">
+                    <h1>Search for a location!</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+

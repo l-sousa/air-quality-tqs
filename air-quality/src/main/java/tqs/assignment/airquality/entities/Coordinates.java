@@ -9,13 +9,11 @@ import java.util.Objects;
 
 @EqualsAndHashCode
 @ToString
+@Getter
+@Setter
 public class Coordinates {
-    @Getter
-    @Setter
     private double latitude;
 
-    @Getter
-    @Setter
     private double longitude;
 
     public Coordinates(double latitude, double longitude) {
