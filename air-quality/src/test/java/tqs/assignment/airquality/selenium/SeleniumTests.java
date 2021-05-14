@@ -2,6 +2,7 @@ package tqs.assignment.airquality.selenium;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -10,11 +11,10 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
+@Disabled // BECAUSE OF GITHUB ACTIONS - REMOVE TAG IF RUNNING LOCALLY
 public class SeleniumTests {
     WebDriver driver;
 
@@ -24,14 +24,10 @@ public class SeleniumTests {
         // https://www.linkedin.com/pulse/running-selenium-web-tests-github-actions-moataz-nabil/
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--no-sandbox");
-        options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--headless");
         driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(120, TimeUnit.MILLISECONDS);
 
     }
-
 
     @Test
     void checkCurrentDataForValidLocation() {
