@@ -45,7 +45,7 @@ public class InterfaceController {
 
     @GetMapping("/current")
     public String getCurrentDataByLocation(@RequestParam(required = false) String location, Model model) throws JsonProcessingException, ParseException {
-        logger.log(Level.INFO, String.format("Receiving request in /location for location \"%s\"", location));
+        logger.log(Level.INFO, String.format("Receiving request in /location "));
 
         if (location == null) {
 
@@ -91,7 +91,6 @@ public class InterfaceController {
     @GetMapping("/forecast")
     public String getForecastDataByLocation(@RequestParam(required = false) String location, Model model) throws JsonProcessingException, MalformedURLException, ParseException {
         logger.log(Level.INFO, String.format("Receiving request in /forecast"));
-        logger.log(Level.INFO, String.format("/forecast location is %s ", location));
 
         if (location == null) {
 
