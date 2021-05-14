@@ -21,6 +21,13 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11.0.4
+      - name: Install Chrome 1
+        run: set -ex
+      - name: Install Chrome 2
+        run: wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+      - name: Install Chrome 3
+        run: sudo apt install ./google-chrome-stable_current_amd64.deb
+            
       - name: Maven Package
         run: mvn -B clean package -DskipTests
       - name: Maven Verify
