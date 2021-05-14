@@ -58,7 +58,7 @@ public class CacheUnitTest {
 
     /* --- Cache --- */
     @Test
-    public void whenCheckIfHasLocation_thenReturnTrueOrFalseAccordingly() throws MalformedURLException, JsonProcessingException, ParseException {
+    public void whenCheckIfHasLocation_thenReturnTrueOrFalseAccordingly() throws ParseException {
         String foz_coa = "Rua da Lameira, Vila Nova de Foz Coa, Guarda, Portugal".replace(" ", "+");
 
         assertFalse(cache.hasLocation(foz_coa));

@@ -8,16 +8,12 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.internal.verification.VerificationModeFactory;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.mockito.junit.jupiter.MockitoSettings;
-import org.mockito.quality.Strictness;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 import tqs.assignment.airquality.entities.*;
 
 import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -37,7 +33,7 @@ public class AirPollutionReportServiceTest {
     private RestTemplate restTemplate;
 
     @Test
-    void whenValidLocation_thenReturnCurrentAirQuality() throws JsonProcessingException, URISyntaxException, MalformedURLException {
+    void whenValidLocation_thenReturnCurrentAirQuality() throws JsonProcessingException, MalformedURLException {
 
         String foz_coa = "Rua da Lameira, Vila Nova de Foz Coa, Guarda, Portugal".replace(" ", "+");
         Location location = new Location(foz_coa);

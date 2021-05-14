@@ -13,10 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 import tqs.assignment.airquality.entities.Coordinates;
-
 import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.URL;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -34,7 +31,7 @@ public class AddressToCoordinatesServiceTest {
     private AddressToCoordinatesService service;
 
     @Test
-    void whenValidLocation_thenReturnCoordinates() throws MalformedURLException, JsonProcessingException, URISyntaxException {
+    void whenValidLocation_thenReturnCoordinates() throws MalformedURLException, JsonProcessingException {
 
         String foz_coa = "Rua da Lameira, Vila Nova de Foz Coa, Guarda, Portugal".replace(" ", "+");
         Coordinates hard_coded_coords = new Coordinates(41.083118, -7.140839);
