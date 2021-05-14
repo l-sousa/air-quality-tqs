@@ -20,7 +20,7 @@ import java.util.*;
 @Service
 @Configurable
 public class AirPollutionReportService {
-    public static final String BM_API_KEY = "54b27f99145c4a6691e919bb1601b69e";
+    public static final String BM_API_KEY = "c81e12d4741b4e9aac717ebbf42e6a38";
     public static final String BM_API_URL_CURRENT = "https://api.breezometer.com/air-quality/v2/current-conditions?key=" + BM_API_KEY;
     public static final String BM_API_URL_FORECAST = "https://api.breezometer.com/air-quality/v2/forecast/hourly?key=" + BM_API_KEY;
 
