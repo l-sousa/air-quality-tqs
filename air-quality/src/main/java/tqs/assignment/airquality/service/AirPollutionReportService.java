@@ -24,15 +24,12 @@ public class AirPollutionReportService {
     public static final String BM_API_URL_CURRENT = "https://api.breezometer.com/air-quality/v2/current-conditions?key=" + BM_API_KEY;
     public static final String BM_API_URL_FORECAST = "https://api.breezometer.com/air-quality/v2/forecast/hourly?key=" + BM_API_KEY;
 
-    private Map<Location, Cache> cacheStatsMap = new Hashtable<>();
-
-
     @Autowired
     private RestTemplate restTemplate;
 
     public AirQuality getDataByLocation(Location location) throws JsonProcessingException, MalformedURLException {
 
-        Coordinates loc_coords = location.getCoordinates(); // GET LOCATION'S COORDINATES
+        Coordinates loc_coords = location.getCoordinates();
 
         URL url = new URL(BM_API_URL_CURRENT + String.format("&lat=%f&lon=%f&features=pollutants_concentrations", loc_coords.getLatitude(), loc_coords.getLongitude()));
 
@@ -41,16 +38,18 @@ public class AirPollutionReportService {
         ObjectMapper mapper = new ObjectMapper();
         JsonNode root = mapper.readTree(response.getBody());
 
-
         AirQuality air_quality = new AirQuality();
 
         air_quality.setLocation(location);
 
         for (JsonNode pollutant : root.path("data").path("pollutants")) {
+
             JsonNode concentration = pollutant.get("concentration");
             Pollutant p = new Pollutant(pollutant.get("display_name").asText(), pollutant.get("full_name").asText(), concentration.get("value").asDouble(), concentration.get("units").asText());
             air_quality.addPollutant(p);
+
         }
+
         return air_quality;
     }
 
@@ -65,6 +64,7 @@ public class AirPollutionReportService {
         URL url = new URL(BM_API_URL_FORECAST + String.format("&lat=%f&lon=%f&features=pollutants_concentrations&start_datetime=%s&end_datetime=%s", loc_coords.getLatitude(), loc_coords.getLongitude(), iso_start_date, iso_end_date));
 
         ResponseEntity<String> response = restTemplate.getForEntity(url.toString(), String.class);
+
         ObjectMapper mapper = new ObjectMapper();
         JsonNode root = mapper.readTree(response.getBody());
 

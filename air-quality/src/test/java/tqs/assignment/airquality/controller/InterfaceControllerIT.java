@@ -19,17 +19,48 @@ public class InterfaceControllerIT {
     private MockMvc mvc;
 
     @Test
-    public void testGetRoot() throws Exception {
-        mvc.perform(get("/"))
+    public void testLocationCurrentData() throws Exception {
+        mvc.perform(get("/current"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("index"));
+                .andExpect(view().name("current_index"));
     }
 
     @Test
-    public void testGetLocation() throws Exception {
-        mvc.perform(get("/location?location=Aveiro"))
+    public void testLocationCurrentDataWithParameter() throws Exception {
+        mvc.perform(get("/current?location=Aveiro"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("index"));
+                .andExpect(view().name("current_index"));
     }
 
+    @Test
+    public void testLocationForecastData() throws Exception {
+        mvc.perform(get("/forecast"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("forecast_index"));
+    }
+
+    @Test
+    public void testLocationForecastDataWithParameter() throws Exception {
+        mvc.perform(get("/forecast?location=Aveiro"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("forecast_index"));
+    }
+
+    @Test
+    public void testLocationCacheData() throws Exception {
+        mvc.perform(get("/cache"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("cache_index"));
+    }
+
+    @Test
+    public void testError() throws Exception {
+        mvc.perform(get("/current?location=random_text_to_throw_error"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("current_index"));
+
+        mvc.perform(get("/forecast?location=random_text_to_throw_error"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("forecast_index"));
+    }
 }
