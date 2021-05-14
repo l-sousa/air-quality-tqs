@@ -14,8 +14,7 @@ import tqs.assignment.airquality.service.AddressToCoordinatesService;
 import tqs.assignment.airquality.service.AirPollutionReportService;
 
 import java.net.MalformedURLException;
-import java.net.URISyntaxException;
-import java.util.Locale;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -26,7 +25,10 @@ public class ApiRestController {
     private Logger logger = Logger.getLogger(InterfaceController.class.getName());
 
     @Autowired
-    private Cache currentCache;
+    private Cache<AirQuality> currentCache;
+
+    @Autowired
+    private Cache<ArrayList<AirQuality>> forecastCache;
 
     @Autowired
     private AirPollutionReportService service;
@@ -40,16 +42,28 @@ public class ApiRestController {
         return "Make a request!";
     }
 
-    @GetMapping("/location/{location}")
-    public AirQuality getReportForLocation(@PathVariable(name = "location") String location) throws MalformedURLException, JsonProcessingException, URISyntaxException {
-        logger.log(Level.INFO, "External API request /location{" + location + "} ");
+    @GetMapping("/current/{location}")
+    public AirQuality getCurrentDataForLocation(@PathVariable(name = "location") String location) throws MalformedURLException, JsonProcessingException {
+        logger.log(Level.INFO, "External API request /current");
 
         Location l = new Location(location);
         l.setCoordinates(coords_service.getCoordinatesOfAddress(location));
 
-        AirQuality a = service.getDataByLocation(l);
+        AirQuality a = service.getCurrentDataByLocation(l);
         return a;
     }
+
+    @GetMapping("/forecast/{location}")
+    public AirQuality getForecastDataForLocation(@PathVariable(name = "location") String location) throws MalformedURLException, JsonProcessingException {
+        logger.log(Level.INFO, "External API request /forecast");
+
+        Location l = new Location(location);
+        l.setCoordinates(coords_service.getCoordinatesOfAddress(location));
+
+        AirQuality a = service.getCurrentDataByLocation(l);
+        return a;
+    }
+
 
     @GetMapping("/cache/current")
     public Cache getCurrentCache() {
@@ -60,7 +74,7 @@ public class ApiRestController {
     @GetMapping("/cache/forecast")
     public Cache getForecastCache() {
         logger.log(Level.INFO, "External API request /cache/forecast ");
-        return currentCache;
+        return forecastCache;
     }
 
 }

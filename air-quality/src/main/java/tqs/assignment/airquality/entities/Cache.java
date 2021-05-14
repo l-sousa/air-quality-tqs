@@ -27,6 +27,23 @@ public class Cache<T> {
     @ToString.Exclude
     private Map<String, Date> cached_requests_time;
 
+    public Cache() {
+        this.cached_requests_time = new HashMap<>();
+        this.cached_requests = new HashMap<>();
+    }
+
+    public void addRequest() {
+        this.request_count++;
+    }
+
+    public void addHit() {
+        this.hits++;
+    }
+
+    public void addMiss() {
+        this.misses++;
+    }
+
     public Boolean hasLocation(String location) throws ParseException {
         addRequest();
         if (this.cached_requests.containsKey(location) && checkTTLNotExpired(location)) {
@@ -73,23 +90,6 @@ public class Cache<T> {
 
         this.cached_requests_time.put(location, time_of_expiration);
 
-    }
-
-    public Cache() {
-        this.cached_requests_time = new HashMap<>();
-        this.cached_requests = new HashMap<>();
-    }
-
-    public void addRequest() {
-        this.request_count++;
-    }
-
-    public void addHit() {
-        this.hits++;
-    }
-
-    public void addMiss() {
-        this.misses++;
     }
 
 

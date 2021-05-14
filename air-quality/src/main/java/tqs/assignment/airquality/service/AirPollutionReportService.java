@@ -27,7 +27,7 @@ public class AirPollutionReportService {
     @Autowired
     private RestTemplate restTemplate;
 
-    public AirQuality getDataByLocation(Location location) throws JsonProcessingException, MalformedURLException {
+    public AirQuality getCurrentDataByLocation(Location location) throws JsonProcessingException, MalformedURLException {
 
         Coordinates loc_coords = location.getCoordinates();
 

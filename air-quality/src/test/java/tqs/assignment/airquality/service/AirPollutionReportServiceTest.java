@@ -66,7 +66,7 @@ public class AirPollutionReportServiceTest {
 
         Mockito.when(restTemplate.getForEntity(url.toString(), String.class)).thenReturn(response);
 
-        AirQuality mocked_aq = service.getDataByLocation(location);
+        AirQuality mocked_aq = service.getCurrentDataByLocation(location);
 
         Mockito.verify(restTemplate, VerificationModeFactory.times(1)).getForEntity(url.toString(), String.class);
         assertEquals(mocked_aq, hard_coded_aq);

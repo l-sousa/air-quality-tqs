@@ -1,6 +1,5 @@
 package tqs.assignment.airquality.entities;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,7 +13,7 @@ public class Location {
     private String address;
     private Coordinates coordinates;
 
-    public Location(String address) throws JsonProcessingException {
+    public Location(String address) {
         this.address = address;
     }
 }
