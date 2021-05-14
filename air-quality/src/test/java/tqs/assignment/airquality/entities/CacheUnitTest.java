@@ -1,13 +1,11 @@
 package tqs.assignment.airquality.entities;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.net.MalformedURLException;
 import java.text.ParseException;
 
 import static org.assertj.core.api.Assertions.*;
