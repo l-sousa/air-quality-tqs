@@ -83,7 +83,7 @@ public class Cache<T> {
 
         Date time_now = new Date();
 
-        final long FIVE_MINUTS_IN_MILIS = 5 * 60000; //millisecs
+        final long FIVE_MINUTS_IN_MILIS = (long) 5 * 60000; //millisecs
 
         long t = time_now.getTime();
         Date time_of_expiration = new Date(t + (FIVE_MINUTS_IN_MILIS));

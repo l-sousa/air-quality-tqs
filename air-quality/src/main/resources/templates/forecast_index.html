@@ -36,23 +36,26 @@
                 </form>
             </div>
             <div th:switch="${is_index}">
-                <div th:case="${true}">
+                <div id="standardMessage" th:case="${true}">
                     <h1>Search for a location!</h1>
                 </div>
                 <div th:case="${false}">
-                    <h1 th:text="'Results for: ' + ${location.address} + ' ' + ${location.coordinates}"></h1>
-                    <div th:each="aq: ${aq_list}" class="row" style="display: flex; flex-wrap: wrap;">
-                        <div class="col-sm-12">
-                            <h3 th:text="'Date - ' +  ${aq.date}"></h3>
-                        </div>
-                        <div class="col-sm-3" th:each="instance : ${aq.pollutants}">
-                            <div class="well">
-                                <h4 th:text="${instance.value.display_name}"></h4>
-                                <p th:text="${instance.value.full_name}"></p>
-                                <p th:text="${instance.value.value} + ' ' + ${instance.value.units}"></p>
+                    <h1 id="searchQuery" th:text="'Results for: ' + ${location.address} + ' ' + ${location.coordinates}"></h1>
+                    <div id="forecastContainer">
+                        <div th:each="aq: ${aq_list}" class="row" style="display: flex; flex-wrap: wrap;">
+                            <div class="col-sm-12">
+                                <h3 th:text="'Date - ' +  ${aq.date}"></h3>
+                            </div>
+                            <div class="col-sm-3" th:each="instance : ${aq.pollutants}">
+                                <div class="well">
+                                    <h4 th:text="${instance.value.display_name}"></h4>
+                                    <p th:text="${instance.value.full_name}"></p>
+                                    <p th:text="${instance.value.value} + ' ' + ${instance.value.units}"></p>
+                                </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>

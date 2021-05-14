@@ -29,12 +29,12 @@
         <div class="col-sm-9">
             <div class="row" style="display: flex; flex-wrap: wrap;">
                 <div class="col-sm-12">
-                    <h1>Current Location Cache</h1>
+                    <h1 id="currentTitle">Current Location Cache</h1>
                 </div>
 
                 <div class="col-sm-3">
                     <div class="well">
-                        <h4>Request Count</h4>
+                        <h4>Hits</h4>
                         <h3 th:text="${current_cache.hits}"></h3>
                     </div>
                 </div>
@@ -53,12 +53,12 @@
 
 
                 <div class="col-sm-12">
-                    <h1>Forecast Location Cache</h1>
+                    <h1 id="forecastTitle" >Forecast Location Cache</h1>
                 </div>
 
                 <div class="col-sm-3">
                     <div class="well">
-                        <h4>Request Count</h4>
+                        <h4>Hits</h4>
                         <h3 th:text="${forecast_cache.hits}"></h3>
                     </div>
                 </div>

@@ -70,7 +70,12 @@ public class InterfaceController {
                     logger.log(Level.INFO, String.format("Request is not cached. Calling service."));
                     Location l = new Location(location);
                     l.setCoordinates(coords_service.getCoordinatesOfAddress(location));
+
+                    System.out.println(l);
+
                     AirQuality airQuality = service.getCurrentDataByLocation(l);
+                    System.out.println(airQuality);
+
                     model.addAttribute("location", airQuality.getLocation());
                     model.addAttribute("pollutants", airQuality.getPollutants());
                     currentCache.addRequestToCache(location, airQuality);

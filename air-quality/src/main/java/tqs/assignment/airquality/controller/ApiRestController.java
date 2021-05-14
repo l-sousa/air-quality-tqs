@@ -2,6 +2,7 @@ package tqs.assignment.airquality.controller;
 
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,12 +37,14 @@ public class ApiRestController {
     @Autowired
     private AddressToCoordinatesService coords_service;
 
+    @Operation(summary = "Root")
     @GetMapping("/")
     public String getIndex() {
         logger.log(Level.INFO, "External API request / ");
         return "Make a request!";
     }
 
+    @Operation(summary = "Gets current date pollution data for a given {location}")
     @GetMapping("/current/{location}")
     public AirQuality getCurrentDataForLocation(@PathVariable(name = "location") String location) throws MalformedURLException, JsonProcessingException {
         logger.log(Level.INFO, "External API request /current");
@@ -53,6 +56,7 @@ public class ApiRestController {
         return a;
     }
 
+    @Operation(summary = "Gets forecast pollution data for a given {location}")
     @GetMapping("/forecast/{location}")
     public AirQuality getForecastDataForLocation(@PathVariable(name = "location") String location) throws MalformedURLException, JsonProcessingException {
         logger.log(Level.INFO, "External API request /forecast");
@@ -64,17 +68,17 @@ public class ApiRestController {
         return a;
     }
 
-
+    @Operation(summary = "Gets current date requests' statistics")
     @GetMapping("/cache/current")
     public Cache getCurrentCache() {
         logger.log(Level.INFO, "External API request /cache/current ");
         return currentCache;
     }
 
+    @Operation(summary = "Gets forecast requests' statistics")
     @GetMapping("/cache/forecast")
     public Cache getForecastCache() {
         logger.log(Level.INFO, "External API request /cache/forecast ");
         return forecastCache;
     }
-
 }

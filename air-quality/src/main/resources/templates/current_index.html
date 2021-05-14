@@ -38,8 +38,8 @@
             </div>
             <div th:switch="${is_index}">
                 <div th:case="${false}">
-                    <h1 th:text="'Results for: ' + ${location.address} + ' ' + ${location.coordinates}"></h1>
-                    <div class="row" style="display: flex; flex-wrap: wrap;">
+                    <h1 id="searchQuery" th:text="'Results for: ' + ${location.address} + ' ' + ${location.coordinates}"></h1>
+                    <div id="pollutants" class="row" style="display: flex; flex-wrap: wrap;">
                         <div class="col-sm-3" th:each="instance : ${pollutants}">
                             <div class="well">
                                 <h4 th:text="${instance.value.display_name}"></h4>
@@ -50,7 +50,7 @@
                     </div>
                 </div>
                 <div th:case="${true}">
-                    <h1>Search for a location!</h1>
+                    <h1 id="standardMessage" >Search for a location!</h1>
                 </div>
             </div>
         </div>

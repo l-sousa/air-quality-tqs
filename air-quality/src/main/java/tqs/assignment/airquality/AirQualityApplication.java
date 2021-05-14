@@ -6,11 +6,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 import tqs.assignment.airquality.entities.AirQuality;
 import tqs.assignment.airquality.entities.Cache;
-import tqs.assignment.airquality.service.AddressToCoordinatesService;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 @SpringBootApplication
 public class AirQualityApplication {
@@ -36,6 +33,5 @@ public class AirQualityApplication {
     public static void main(String[] args) {
         SpringApplication.run(AirQualityApplication.class, args);
     }
-
 
 }
