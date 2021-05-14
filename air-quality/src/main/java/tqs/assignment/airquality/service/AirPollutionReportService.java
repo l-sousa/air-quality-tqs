@@ -35,6 +35,8 @@ public class AirPollutionReportService {
 
         ResponseEntity<String> response = restTemplate.getForEntity(url.toString(), String.class);
 
+        System.out.println("RESPONSE " + response);
+
         ObjectMapper mapper = new ObjectMapper();
         JsonNode root = mapper.readTree(response.getBody());
 
@@ -64,6 +66,10 @@ public class AirPollutionReportService {
         URL url = new URL(BM_API_URL_FORECAST + String.format("&lat=%f&lon=%f&features=pollutants_concentrations&start_datetime=%s&end_datetime=%s", loc_coords.getLatitude(), loc_coords.getLongitude(), iso_start_date, iso_end_date));
 
         ResponseEntity<String> response = restTemplate.getForEntity(url.toString(), String.class);
+
+
+        System.out.println("RESPONSE " + response);
+
 
         ObjectMapper mapper = new ObjectMapper();
         JsonNode root = mapper.readTree(response.getBody());

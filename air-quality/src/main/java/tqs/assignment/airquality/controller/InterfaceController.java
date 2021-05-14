@@ -71,10 +71,8 @@ public class InterfaceController {
                     Location l = new Location(location);
                     l.setCoordinates(coords_service.getCoordinatesOfAddress(location));
 
-                    System.out.println(l);
 
                     AirQuality airQuality = service.getCurrentDataByLocation(l);
-                    System.out.println(airQuality);
 
                     model.addAttribute("location", airQuality.getLocation());
                     model.addAttribute("pollutants", airQuality.getPollutants());

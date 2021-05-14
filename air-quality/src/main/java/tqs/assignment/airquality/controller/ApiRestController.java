@@ -14,7 +14,9 @@ import tqs.assignment.airquality.entities.Location;
 import tqs.assignment.airquality.service.AddressToCoordinatesService;
 import tqs.assignment.airquality.service.AirPollutionReportService;
 
+import java.lang.reflect.Array;
 import java.net.MalformedURLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -58,14 +60,14 @@ public class ApiRestController {
 
     @Operation(summary = "Gets forecast pollution data for a given {location}")
     @GetMapping("/forecast/{location}")
-    public AirQuality getForecastDataForLocation(@PathVariable(name = "location") String location) throws MalformedURLException, JsonProcessingException {
+    public ArrayList<AirQuality> getForecastDataForLocation(@PathVariable(name = "location") String location) throws MalformedURLException, JsonProcessingException, ParseException {
         logger.log(Level.INFO, "External API request /forecast");
 
         Location l = new Location(location);
         l.setCoordinates(coords_service.getCoordinatesOfAddress(location));
 
-        AirQuality a = service.getCurrentDataByLocation(l);
-        return a;
+        ArrayList<AirQuality> aq_list = service.getForecastDataByLocation(l);
+        return aq_list;
     }
 
     @Operation(summary = "Gets current date requests' statistics")
